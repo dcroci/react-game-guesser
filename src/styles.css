@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 98vh;
+}
+.game {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  text-align: left;
+  align-items: center;
+  position: relative;
+}
+.game img {
+  width: fit-content;
+  filter: brightness(0%);
+}
+.eye {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 10%;
+  cursor: pointer;
+}
+.hint {
+  width: 57%;
+  background-color: rgb(64, 115, 190);
+  text-align: center;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 20px;
+}
+form {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 57%;
+}
