@@ -20,6 +20,7 @@ body {
   align-items: center;
   position: relative;
   box-shadow: rgba(62, 62, 68, 0.6) 0px 7px 29px 0px;
+  margin-top: 15%;
 }
 .game img {
   width: 100%;
