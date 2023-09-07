@@ -1,21 +1,30 @@
+* {
+  box-sizing: border-box;
+  transition: all 0.5s;
+  font-family: 'Poppins', sans-serif;
+}
 body {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 98vh;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
 }
 .game {
-  border: 2px solid black;
+  border: 4px solid white;
   display: flex;
   flex-direction: column;
   width: 400px;
   text-align: left;
   align-items: center;
   position: relative;
+  box-shadow: rgba(62, 62, 68, 0.6) 0px 7px 29px 0px;
 }
 .game img {
-  width: fit-content;
+  width: 100%;
   filter: brightness(0%);
+  margin-bottom: 12px;
 }
 .eye {
   position: absolute;
@@ -23,19 +32,53 @@ body {
   right: 0;
   max-width: 10%;
   cursor: pointer;
+  border: 10px solid red;
+  background-color: red;
 }
 .hint {
   width: 57%;
-  background-color: rgb(64, 115, 190);
   text-align: center;
   padding: 12px;
   border-radius: 4px;
   font-size: 20px;
+  cursor: pointer;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  border: 2px solid white;
+}
+.hint:hover {
+  transform: scale(1.05);
 }
 form {
-  width: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 57%;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+}
+button {
+  padding: 12px;
+  border: none;
+}
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  padding: 4px 12px;
+}
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+li {
+  padding: 12px;
 }
