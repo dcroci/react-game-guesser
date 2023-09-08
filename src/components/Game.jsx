@@ -6,7 +6,7 @@ export default function Game() {
   const [userGuess, setUserGuess] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState({});
   const [genres, setGenres] = useState([]);
-  const [gameData, setGameData] = useState([]);
+
   const [needsHint, setNeedsHint] = useState({
     hint1: false,
     hint2: false,
@@ -74,43 +74,44 @@ export default function Game() {
       alert('Not even close pipsqueak. Try again!');
     }
   }
-  return correctAnswer ? (
-    <div className="game">
-      <div className="image-container">
-        <img
-          src={correctAnswer.background_image}
-          style={
-            imageHidden
-              ? { filter: 'brightness(0)' }
-              : { filter: 'brightness(100%)' }
-          }
-          alt="Game Cover"
+  return (
+    <>
+      <div className="game">
+        <div className="image-container">
+          <img
+            src={correctAnswer.background_image}
+            style={
+              imageHidden
+                ? { filter: 'brightness(0)' }
+                : { filter: 'brightness(100%)' }
+            }
+            alt="Game Cover"
+          />
+          {/* <p className="skip">SKIP</p> */}
+          <img
+            src="../assets/eye.png"
+            className="eye"
+            onClick={() => setImageHidden(false)}
+          />
+        </div>
+        <Hint
+          correctAnswer={correctAnswer}
+          genres={genres}
+          handleHintClick={handleHintClick}
+          needsHint={needsHint}
+          releaseDate={correctAnswer.date}
         />
-        {/* <p className="skip">SKIP</p> */}
-        <img
-          src="../assets/eye.png"
-          className="eye"
-          onClick={() => setImageHidden(false)}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Guess a game..."
+            name="guess"
+            value={userGuess}
+            onChange={handleGuess}
+          />
+          <button>Submit</button>
+        </form>
       </div>
-      <Hint
-        correctAnswer={correctAnswer}
-        genres={genres}
-        handleHintClick={handleHintClick}
-        needsHint={needsHint}
-        releaseDate={correctAnswer.date}
-        gameData={gameData}
-      />
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Guess a game..."
-          name="guess"
-          value={userGuess}
-          onChange={handleGuess}
-        />
-        <button>Submit</button>
-      </form>
-    </div>
-  ) : null;
+    </>
+  );
 }

@@ -25,7 +25,7 @@ p {
   border-bottom: none;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  max-width: 400px;
   text-align: left;
   align-items: center;
   position: relative;
@@ -33,6 +33,44 @@ p {
   margin: 0 auto;
   margin-bottom: 24px;
   margin-top: 24px;
+}
+.modal {
+  border: 4px solid white;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(62, 62, 68, 0.6) 0px 7px 29px 0px;
+  margin: 24px auto;
+  padding: 8px;
+}
+.modal li {
+  padding: 4px 0;
+}
+.modal ul {
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+.modal p:nth-of-type(1) {
+  text-align: center;
+  margin: 8px 0;
+}
+.modal h2 {
+  margin: 4px auto;
+  text-align: center;
+}
+.modal p:nth-of-type(2) {
+  background-color: white;
+  padding: 8px;
+  width: 50%;
+  border-radius: 4px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+.modal p:nth-of-type(2):hover {
+  background-color: #efecec;
 }
 .game img:nth-of-type(1) {
   width: 100%;
@@ -126,6 +164,10 @@ nav ul {
   display: flex;
   list-style-type: none;
 }
-li {
+nav li {
   padding: 12px;
+  cursor: pointer;
+}
+nav li:hover {
+  text-decoration: underline;
 }
