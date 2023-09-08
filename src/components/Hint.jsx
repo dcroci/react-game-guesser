@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function Hint(props) {
   return (
     <>
@@ -21,11 +22,20 @@ export default function Hint(props) {
       )}
       {props.needsHint.hint3 === true ? (
         <p className="hint" onClick={() => props.handleHintClick('hint3')}>
-          {props.correctAnswer.name}
+          {props.correctAnswer.metacritic}
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint3')}>
-          Description
+          Metacritic Score
+        </p>
+      )}
+      {props.needsHint.hint4 === true ? (
+        <p className="hint" onClick={() => props.handleHintClick('hint4')}>
+          {props.correctAnswer.released}
+        </p>
+      ) : (
+        <p className="hint" onClick={() => props.handleHintClick('hint4')}>
+          Release Date
         </p>
       )}
     </>

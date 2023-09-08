@@ -6,10 +6,12 @@ export default function Game() {
   const [userGuess, setUserGuess] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState({});
   const [genres, setGenres] = useState([]);
+  const [gameData, setGameData] = useState([]);
   const [needsHint, setNeedsHint] = useState({
     hint1: false,
     hint2: false,
     hint3: false,
+    hint4: false,
   });
   function handleHintClick(hint) {
     setNeedsHint((prevState) => {
@@ -22,7 +24,7 @@ export default function Game() {
 
   function getRandomGame() {
     fetch(
-      `https://api.rawg.io/api/games?page_size=500&key=28528c3e9f5e44ceaea5b485946d9fe9&page=2`
+      `https://api.rawg.io/api/games?metacritic=80,200&page_size=500&key=28528c3e9f5e44ceaea5b485946d9fe9`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -35,6 +37,7 @@ export default function Game() {
       })
       .catch((error) => console.error('Error:', error));
   }
+
   useEffect(() => {
     getRandomGame();
   }, []);
@@ -69,29 +72,32 @@ export default function Game() {
       alert('Not even close pipsqueak. Try again!');
     }
   }
-
-  return (
+  return correctAnswer ? (
     <div className="game">
-      <img
-        src={correctAnswer.background_image}
-        style={
-          imageHidden
-            ? { filter: 'brightness(0)' }
-            : { filter: 'brightness(100%)' }
-        }
-        alt="Game Cover"
-      />
-      <img
-        src="../eye.png"
-        className="eye"
-        onClick={() => setImageHidden(false)}
-        alt="Eye Icon"
-      />
+      <div className="image-container">
+        <img
+          src={correctAnswer.background_image}
+          style={
+            imageHidden
+              ? { filter: 'brightness(0)' }
+              : { filter: 'brightness(100%)' }
+          }
+          alt="Game Cover"
+        />
+        {/* <p className="skip">SKIP</p> */}
+        <img
+          src="../src/assets/eye.png"
+          className="eye"
+          onClick={() => setImageHidden(false)}
+        />
+      </div>
       <Hint
         correctAnswer={correctAnswer}
         genres={genres}
         handleHintClick={handleHintClick}
         needsHint={needsHint}
+        releaseDate={correctAnswer.date}
+        gameData={gameData}
       />
       <form onSubmit={handleSubmit}>
         <input
@@ -104,5 +110,5 @@ export default function Game() {
         <button>Submit</button>
       </form>
     </div>
-  );
+  ) : null;
 }
