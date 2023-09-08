@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export default function Hint(props) {
   return (
-    <>
+    <div className="hints">
       {props.needsHint.hint1 === true ? (
         <div className="hint" onClick={() => props.handleHintClick('hint1')}>
           <p>{props.genres}</p>
@@ -13,11 +13,11 @@ export default function Hint(props) {
       )}
       {props.needsHint.hint2 === true ? (
         <p className="hint" onClick={() => props.handleHintClick('hint2')}>
-          {props.correctAnswer.name}
+          {props.correctAnswer.esrb_rating.name}
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint2')}>
-          Studio
+          ESRB Rating
         </p>
       )}
       {props.needsHint.hint3 === true ? (
@@ -38,6 +38,6 @@ export default function Hint(props) {
           Release Date
         </p>
       )}
-    </>
+    </div>
   );
 }

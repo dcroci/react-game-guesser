@@ -24,7 +24,7 @@ export default function Game() {
 
   function getRandomGame() {
     fetch(
-      `https://api.rawg.io/api/games?metacritic=80,200&page_size=500&key=28528c3e9f5e44ceaea5b485946d9fe9`
+      `https://api.rawg.io/api/games?metacritic=75,200&page_size=500&key=28528c3e9f5e44ceaea5b485946d9fe9`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -59,16 +59,18 @@ export default function Game() {
         hint2: false,
         hint3: false,
       });
-    }, 5000);
+    }, 3000);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (userGuess.toLowerCase() === correctAnswer.name.toLowerCase()) {
+    if (correctAnswer.name.toLowerCase().startsWith(userGuess.toLowerCase())) {
       setImageHidden(false);
+      setUserGuess('');
       alert('You got it!');
       restartGame();
     } else {
+      setUserGuess('');
       alert('Not even close pipsqueak. Try again!');
     }
   }
@@ -86,7 +88,7 @@ export default function Game() {
         />
         {/* <p className="skip">SKIP</p> */}
         <img
-          src="../src/assets/eye.png"
+          src="../assets/eye.png"
           className="eye"
           onClick={() => setImageHidden(false)}
         />
