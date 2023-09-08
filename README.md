@@ -1,8 +1,41 @@
-# React + Vite
+<h1>Welcome to Game Guesser</h1>
+    
+<p>🎮 Game Guesser is a fun and interactive web application that tests your knowledge of video games! In Game Guesser, users are presented with a series of hints about a video game and must use these hints to guess the correct game title. This project demonstrates a solid understanding of key React concepts, including <code>useState</code>, <code>useEffect</code>, <code>props</code>, event handling, and more. Let's dive into how this project works and the technologies it utilizes.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>🚀 Demo</h2>
+    
+<p>You can try out Game Guesser live by visiting <a href="https://gameguesser.netlify.app/">Game Guesser</a>. Have fun guessing the video games!</p>
 
-Currently, two official plugins are available:
+<h2>🎮 Features</h2>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p>Game Guesser showcases various React concepts and features:</p>
+    
+<ul>
+    <li><strong>useState:</strong> Game Guesser utilizes <code>useState</code> to manage the state of the game, including the current hint, user's input, and score.</li>
+    <li><strong>useEffect:</strong> The <code>useEffect</code> hook is employed to fetch new game hints and update the game state when needed.</li>
+    <li><strong>Props:</strong> Components are effectively organized and use props to pass data between parent and child components. For example, hint data is passed from the parent component to the game component.</li>
+    <li><strong>Event Handling:</strong> The application handles user interactions seamlessly. Events like submitting a guess, clicking a button, or advancing to the next hint are all managed efficiently through event handlers.</li>
+    <li><strong>Responsive Design:</strong> Game Guesser is designed to be responsive, ensuring an optimal user experience across various screen sizes and devices.</li>
+</ul>
+
+<h2>🔧 Technologies Used</h2>
+
+<p>Game Guesser is built using the following technologies:</p>
+    
+<ul>
+    <li><a href="https://reactjs.org/">React</a>: A JavaScript library for building user interfaces.</li>
+        <li>JSX: A syntax extension for JavaScript often used with React to describe the UI.</li>
+        <li><a href="https://rawg.io/apidocs">RAWG API</a>: Used to fetch game hints and information.</li>
+</ul>
+
+<h2>🤝 Contributing</h2>
+
+<p>Contributions to Game Guesser are welcome! If you'd like to contribute, please open an issue or create a pull request with your proposed changes.</p>
+
+<h2>📄 License</h2>
+
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+
+<hr>
+
+<p>I hope you enjoy playing Game Guesser as much as we enjoyed building it. If you have any questions, feedback, or suggestions, please feel free to reach out. Happy gaming!</p>
