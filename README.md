@@ -36,6 +36,6 @@
 
 <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 
-<hr>
+<h2>👋 About Me </h2>
+I'm Dominik Croci, and this project is a testament to my love for coding and humor. If you want to chat or have questions, you can reach me at dominikrcroci@gmail.com. Thank you!
 
-<p>I hope you enjoy playing Game Guesser as much as we enjoyed building it. If you have any questions, feedback, or suggestions, please feel free to reach out. Happy gaming!</p>
