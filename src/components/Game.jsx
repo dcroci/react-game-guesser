@@ -89,7 +89,7 @@ export default function Game() {
           />
           {/* <p className="skip">SKIP</p> */}
           <img
-            src="../assets/eye.png"
+            src="../../public/eye.png"
             className="eye"
             onClick={() => setImageHidden(false)}
           />
