@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import Hint from './Hint';
 
-export default function Game() {
+export default function Game({ totalWins, setTotalWins }) {
   const [imageHidden, setImageHidden] = useState(true);
   const [userGuess, setUserGuess] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState({});
@@ -51,6 +52,7 @@ export default function Game() {
     setUserGuess(e.target.value);
   }
   function restartGame() {
+    setTotalWins((prevWins) => JSON.stringify(prevWins + 1));
     setTimeout(() => {
       setImageHidden(true);
       getRandomGame();
@@ -74,6 +76,9 @@ export default function Game() {
       alert('Not even close pipsqueak. Try again!');
     }
   }
+  useEffect(() => {
+    localStorage.setItem('wins', JSON.stringify(totalWins));
+  }, [totalWins]);
   return (
     <>
       <div className="game">
