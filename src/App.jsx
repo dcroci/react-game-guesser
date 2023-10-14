@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 export default function App() {
   const [modalIsActive, setModalIsActive] = useState(false);
   const [totalWins, setTotalWins] = useState(() => {
-    const wins = JSON.parse(localStorage.getItem('wins'));
+    const wins = Number(localStorage.getItem('wins'));
     return wins ? wins : 0;
   });
 
@@ -15,13 +15,15 @@ export default function App() {
   }
   return (
     <>
-      <Navbar
-        handleToggleModal={handleToggleModal}
-        modalIsActive={modalIsActive}
-        totalWins={totalWins}
-      />
-      <Game setTotalWins={setTotalWins} totalWins={totalWins} />
-      <Footer />
+      <body>
+        <Navbar
+          handleToggleModal={handleToggleModal}
+          modalIsActive={modalIsActive}
+          totalWins={totalWins}
+        />
+        <Game setTotalWins={setTotalWins} totalWins={totalWins} />
+        <Footer />
+      </body>
     </>
   );
 }
