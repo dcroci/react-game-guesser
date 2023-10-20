@@ -13,11 +13,10 @@ export default function Game({ totalWins, setTotalWins }) {
   //EXTRA DETAILS OF RANDOM GAME FROM API
   const [correctAnswerDetails, setCorrectAnswerDetails] = useState([]);
   //DETERMINES IF GAME IS COMPLETE
-  const [gameOver, setGameOver] = useState(false);
   //GENRES
   const [genres, setGenres] = useState([]);
   //DETERMINES WHAT SHOWS WHILE API IS LOADING DATA
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   //DETERMINES IF AND WHICH HINTS USER WANTS
   const [needsHint, setNeedsHint] = useState({
     hint1: false,
@@ -27,6 +26,8 @@ export default function Game({ totalWins, setTotalWins }) {
     hint5: false,
     hint6: false,
   });
+  const [newGameTrigger, setNewGameTrigger] = useState(true);
+  const [guessFeedback, setGuessFeedback] = useState('Guess a game!');
   //SHOWS HINT FOR USER SELECTED HINT BOX
   function handleHintClick(hint) {
     setNeedsHint((prevState) => {
@@ -53,10 +54,10 @@ export default function Game({ totalWins, setTotalWins }) {
       console.log(randomGame);
       setCorrectAnswer(randomGame);
       setGenres(handleGenres(randomGame.genres));
+      setIsLoading(false);
     }
     fetchRandomGame();
-    setIsLoading(false);
-  }, [gameOver]);
+  }, [newGameTrigger]);
   //GET EXTRA DETAILS ABOUT THE RANDOM GAME
   useEffect(() => {
     async function getGameDetails() {
@@ -81,16 +82,14 @@ export default function Game({ totalWins, setTotalWins }) {
   //SET ALL FUNCTIONS BACK TO DEFAULT AND ADD A WIN TO TOTAL WINS
   function restartGame() {
     setTotalWins((prevWins) => prevWins + 1);
-    setTimeout(() => {
-      setImageHidden(true);
-      setGameOver(true);
-      setNeedsHint({
-        hint1: false,
-        hint2: false,
-        hint3: false,
-        hint4: false,
-      });
-    }, 3000);
+    setImageHidden(true);
+    setNeedsHint({
+      hint1: false,
+      hint2: false,
+      hint3: false,
+      hint4: false,
+    });
+    setNewGameTrigger((prevState) => !prevState);
   }
   //COMPARES USER INPUT WITH CORRECT NAME
   function handleSubmit(e) {
@@ -98,7 +97,12 @@ export default function Game({ totalWins, setTotalWins }) {
     if (correctAnswer.name.toLowerCase().startsWith(userGuess.toLowerCase())) {
       setImageHidden(false);
       setUserGuess('');
-      alert('You got it!');
+      setTimeout(() => {
+        setGuessFeedback(
+          `You got it! Great job guessing ${correctAnswer.name}`
+        );
+      });
+
       restartGame();
     } else {
       setUserGuess('');
@@ -110,52 +114,65 @@ export default function Game({ totalWins, setTotalWins }) {
     const genreNames = genresData.map((genre) => genre.name + ' ');
     return genreNames;
   }
+  function triggerNewGame() {
+    setImageHidden(true);
+    setNeedsHint({
+      hint1: false,
+      hint2: false,
+      hint3: false,
+      hint4: false,
+    });
+    setNewGameTrigger((prevState) => !prevState);
+    setGuessFeedback('Guess a game!');
+  }
   return (
     <>
-      <div className="game">
-        <div className="image-container">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <img
-                src={correctAnswer.background_image}
-                style={
-                  //HIDES IMAGE IF GAME IS STILL GOING AND USER HAS NOT CLICKED EYE IMG
-                  imageHidden
-                    ? { filter: 'brightness(0)' }
-                    : { filter: 'brightness(100%)' }
-                }
-                alt="Game Cover"
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="game">
+          <div className="image-container">
+            <img
+              src={correctAnswer.background_image}
+              style={
+                imageHidden
+                  ? { filter: 'brightness(0)' }
+                  : { filter: 'brightness(100%)' }
+              }
+            />
+            <p className="skip" onClick={triggerNewGame}>
+              SKIP
+            </p>
+            <img
+              src="../../eye.png"
+              className="eye"
+              onClick={() => setImageHidden(false)}
+              alt="eyeball icon to reveal video game cover"
+            />
+            <p>{guessFeedback}</p>
+          </div>
+          <div>
+            <Hint
+              correctAnswer={correctAnswer}
+              handleHintClick={handleHintClick}
+              needsHint={needsHint}
+              genres={genres}
+              details={correctAnswerDetails}
+            />
+
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Guess a game..."
+                name="guess"
+                value={userGuess}
+                onChange={handleGuess}
               />
-              <img
-                src="../../public/eye.png"
-                className="eye"
-                //REVEALS GAME COVER IMG
-                onClick={() => setImageHidden(false)}
-                alt="eyeball icon to reveal video game cover"
-              />
-            </>
-          )}
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </div>
-        <Hint
-          correctAnswer={correctAnswer}
-          handleHintClick={handleHintClick}
-          needsHint={needsHint}
-          genres={genres}
-          details={correctAnswerDetails}
-        />
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Guess a game..."
-            name="guess"
-            value={userGuess}
-            onChange={handleGuess}
-          />
-          <button>Submit</button>
-        </form>
-      </div>
+      )}
     </>
   );
 }

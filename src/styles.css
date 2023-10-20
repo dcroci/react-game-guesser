@@ -16,10 +16,10 @@ p {
 }
 .game {
   border: 4px solid white;
-  border-bottom: none;
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-direction: row;
+  max-width: 900px;
   text-align: left;
   align-items: center;
   position: relative;
@@ -27,7 +27,7 @@ p {
   margin: 0 auto;
   margin-bottom: 24px;
   margin-top: 24px;
-  height: 100%;
+  width: 100%;
 }
 .modal {
   border: 4px solid white;
@@ -71,20 +71,33 @@ p {
   width: 100%;
   filter: brightness(0%);
   margin-bottom: 12px;
+  border: 2px solid white;
+  aspect-ratio: 16/9;
+  position: relative;
 }
 .image-container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  height: 100%;
+  width: 100%;
 }
 
 .skip {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 0;
+  left: 0;
   background-color: #fff; /* Optional background color */
   padding: 5px 8px;
-  width: 15%;
   text-align: center;
-  /* Optional padding */
+  cursor: pointer;
+}
+.loader {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px;
 }
 .eye {
   position: absolute;
@@ -103,12 +116,13 @@ p {
   grid-template-rows: 1fr 1fr 1fr;
   margin: 0 auto;
   gap: 16px;
-  padding: 8px 8px 24px 8px;
+  margin: 16px 0px 16px 0;
+  padding: 0px 8px 0px 0px;
 }
 .hint {
-  width: 90%;
+  width: 150px;
   text-align: center;
-  padding: 12px;
+  padding: 6px 12px;
   border-radius: 4px;
   font-size: 20px;
   cursor: pointer;
@@ -126,6 +140,7 @@ p {
   grid-row: 3/-1;
   max-height: none;
   height: fit-content;
+  width: 100%;
 }
 .desc {
   font-size: 14px;
@@ -214,7 +229,15 @@ footer div p svg {
   width: 80%;
   cursor: pointer;
 }
-@media (max-width: 530px) {
+@media (max-width: 932px) {
+  .game {
+    grid-template-columns: 1fr;
+  }
+  .image-container {
+    width: 100%;
+  }
+}
+@media (max-width: 548px) {
   nav {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -233,5 +256,21 @@ footer div p svg {
   }
   nav li {
     margin: 0 auto;
+  }
+  .hint {
+    width: 100%;
+    padding: 3px 6px;
+    height: 100%;
+  }
+
+  .desc-div {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 12px;
+  }
+  .game img:nth-of-type(1) {
+    aspect-ratio: initial;
+    max-width: 100%;
+    width: fit-content;
   }
 }
