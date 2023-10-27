@@ -234,6 +234,7 @@ input {
   border: none;
   font-size: 16px;
   border-radius: 0;
+  color: #013a6b;
 }
 input:focus {
   border: none;
