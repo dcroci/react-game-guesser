@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import Loader from './Loader';
 import Hint from './Hint';
+import NewGameBtn from './NewGameBtn';
 
-export default function Game({ totalWins, setTotalWins }) {
+export default function Game({ totalWins, setTotalWins, setShowConfetti }) {
   //DETERMINES IF GAME COVER IMG IS SHOWN TO USER
   const [imageHidden, setImageHidden] = useState(true);
   //USER INPUT FROM SEARCH BAR
@@ -97,16 +98,15 @@ export default function Game({ totalWins, setTotalWins }) {
     if (correctAnswer.name.toLowerCase().startsWith(userGuess.toLowerCase())) {
       setImageHidden(false);
       setUserGuess('');
+      setShowConfetti(true);
       setTimeout(() => {
         setGuessFeedback(
-          `You got it! Great job guessing ${correctAnswer.name}`
+          `You got it! Great job guessing ${correctAnswer.name}!`
         );
       });
-
-      restartGame();
     } else {
       setUserGuess('');
-      alert('Not even close pipsqueak. Try again!');
+      setGuessFeedback('Not so fast! Try again!');
     }
   }
   //genres
@@ -124,6 +124,7 @@ export default function Game({ totalWins, setTotalWins }) {
     });
     setNewGameTrigger((prevState) => !prevState);
     setGuessFeedback('Guess a game!');
+    setShowConfetti(false);
   }
   return (
     <>
@@ -139,17 +140,27 @@ export default function Game({ totalWins, setTotalWins }) {
                   ? { filter: 'brightness(0)' }
                   : { filter: 'brightness(100%)' }
               }
+              className="relative-img"
             />
-            <p className="skip" onClick={triggerNewGame}>
-              SKIP
-            </p>
             <img
               src="../../eye.png"
               className="eye"
               onClick={() => setImageHidden(false)}
               alt="eyeball icon to reveal video game cover"
             />
-            <p>{guessFeedback}</p>
+            <p className="response">{guessFeedback}</p>
+            <div className="new-game-div">
+              <NewGameBtn
+                cssClass="new-game1"
+                text={'SKIP'}
+                triggerNewGame={triggerNewGame}
+              />
+              <NewGameBtn
+                cssClass="new-game1"
+                text={'NEW GAME'}
+                triggerNewGame={triggerNewGame}
+              />
+            </div>
           </div>
           <div>
             <Hint

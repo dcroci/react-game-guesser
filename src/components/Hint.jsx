@@ -11,7 +11,7 @@ export default function Hint(props) {
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint2')}>
-          ESRB Rating 🔴
+          ESRB Rating
         </p>
       )}
       {props.needsHint.hint3 === true ? (
@@ -20,7 +20,7 @@ export default function Hint(props) {
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint3')}>
-          Metacritic Score 🔴
+          Metacritic Score
         </p>
       )}
       {props.needsHint.hint1 === true ? (
@@ -29,7 +29,7 @@ export default function Hint(props) {
         </div>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint1')}>
-          Genres 🟡
+          Genres
         </p>
       )}
       {props.needsHint.hint4 === true ? (
@@ -38,7 +38,7 @@ export default function Hint(props) {
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint4')}>
-          Release Date 🟢
+          Release Date
         </p>
       )}
       {props.needsHint.hint5 === true ? (
@@ -47,7 +47,7 @@ export default function Hint(props) {
         </p>
       ) : (
         <p className="hint" onClick={() => props.handleHintClick('hint5')}>
-          Publisher 🟢
+          Publisher
         </p>
       )}
       {props.needsHint.hint6 === true ? (

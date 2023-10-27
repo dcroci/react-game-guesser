@@ -2,20 +2,59 @@
   box-sizing: border-box;
   transition: all 0.5s;
   font-family: 'Poppins', sans-serif;
+  color: white;
 }
 #root {
   width: 100%;
 }
+html {
+  background-color: #013a6b;
+  background-image: -webkit-linear-gradient(30deg, #013a6b 50%, #004e95 50%);
+  min-height: 500px;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  margin: 0;
+}
+main {
+  position: relative;
+  min-height: 300px;
 }
 p {
   font-size: 20px;
 }
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .game {
-  border: 4px solid white;
   display: grid;
   grid-template-columns: 1fr 1fr;
   flex-direction: row;
@@ -23,11 +62,13 @@ p {
   text-align: left;
   align-items: center;
   position: relative;
-  box-shadow: rgba(62, 62, 68, 0.6) 0px 7px 29px 0px;
+  box-shadow: rgb(0, 0, 0) 0px 7px 29px 0px;
   margin: 0 auto;
-  margin-bottom: 24px;
-  margin-top: 24px;
+  margin-bottom: 96px;
+  margin-top: 96px;
   width: 100%;
+  background-color: rgb(228, 228, 228);
+  gap: 8px;
 }
 .modal {
   border: 4px solid white;
@@ -36,9 +77,10 @@ p {
   max-width: 400px;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(62, 62, 68, 0.6) 0px 7px 29px 0px;
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 7px 29px 0px;
   margin: 24px auto;
   padding: 8px;
+  background-color: rgb(30, 30, 30);
 }
 .modal li {
   padding: 4px 0;
@@ -79,20 +121,46 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px;
   height: 100%;
   width: 100%;
+  position: relative;
+  justify-content: space-between;
 }
 
-.skip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #fff; /* Optional background color */
+.image-container div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+  gap: 16px;
+  margin: 16px 0px 16px 0;
+}
+.image-container div p:nth-of-type(1) {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.image-container div p:nth-of-type(2) {
+  grid-column-start: 3;
+  grid-column-end: -1;
+}
+
+.new-game1 {
   padding: 5px 8px;
   text-align: center;
   cursor: pointer;
+  color: rgb(228, 228, 228);
+  width: 150px;
+  background-color: #004e95;
+  border: 2px solid white;
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 6px 12px;
 }
+.new-game1:hover {
+  transform: translateY(-2px);
+  background-color: #013a6b;
+}
+
 .loader {
   width: 100%;
   text-align: center;
@@ -101,8 +169,8 @@ p {
 }
 .eye {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  left: 2px;
   max-width: 10%;
   cursor: pointer;
   padding: 5px 8px;
@@ -117,7 +185,7 @@ p {
   margin: 0 auto;
   gap: 16px;
   margin: 16px 0px 16px 0;
-  padding: 0px 8px 0px 0px;
+  padding: 16px 24px 16px 0px;
 }
 .hint {
   width: 150px;
@@ -126,8 +194,7 @@ p {
   border-radius: 4px;
   font-size: 20px;
   cursor: pointer;
-  background-color: #8bc6ec;
-  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  background-color: #004e95;
   border: 2px solid white;
   margin: 0 auto;
   display: flex;
@@ -135,10 +202,14 @@ p {
   justify-content: center;
   height: 100px;
 }
+.hint:hover {
+  background-color: #013a6b;
+}
 .desc-div {
   grid-column: 1/-1;
   grid-row: 3/-1;
   max-height: none;
+  min-height: 100px;
   height: fit-content;
   width: 100%;
 }
@@ -149,7 +220,7 @@ p {
   height: fit-content;
 }
 .hint:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 form {
   width: 100%;
@@ -174,16 +245,29 @@ button {
   border: none;
   font-size: 16px;
   border-radius: 0;
+  background-color: #004e95;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #013a6b;
 }
 nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 3rem;
   align-items: center;
   padding: 4px 12px;
   flex-wrap: wrap;
   border-bottom: 2px solid white;
+  background-color: rgb(228, 228, 228);
+  color: #013a6b;
+}
+.response {
+  color: #013a6b;
+  text-align: center;
+  padding: 1rem;
 }
 nav ul {
   display: flex;
@@ -192,12 +276,16 @@ nav ul {
 nav li {
   padding: 12px;
   cursor: pointer;
+  color: #013a6b;
+  font-weight: bold;
+  font-size: 20px;
 }
 nav li:hover {
   text-decoration: underline;
 }
 .total-wins {
-  background-color: white;
+  background-color: #004e95;
+  color: rgb(228, 228, 228);
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
@@ -205,6 +293,10 @@ nav li:hover {
 }
 .total-wins:hover {
   text-decoration: none;
+}
+h1 {
+  color: #013a6b;
+  font-size: 24px;
 }
 footer {
   width: 100%;
@@ -214,6 +306,10 @@ footer {
   justify-content: center;
   margin-top: 3rem;
   border-top: 2px solid white;
+  /* position: fixed;
+  bottom: 0; */
+  background-color: rgb(228, 228, 228);
+  color: #013a6b;
 }
 footer div {
   display: flex;
@@ -221,9 +317,11 @@ footer div {
 }
 footer small {
   margin-top: 24px;
+  color: #013a6b;
 }
 footer div p {
   padding: 0 1rem;
+  color: #013a6b;
 }
 footer div p svg {
   width: 80%;
@@ -236,6 +334,9 @@ footer div p svg {
   .image-container {
     width: 100%;
   }
+  footer {
+    position: initial;
+  }
 }
 @media (max-width: 548px) {
   nav {
@@ -243,6 +344,7 @@ footer div p svg {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
   nav div {
     grid-column: 1/4;
     text-align: center;
@@ -272,5 +374,9 @@ footer div p svg {
     aspect-ratio: initial;
     max-width: 100%;
     width: fit-content;
+  }
+  .game {
+    margin-top: 48px;
+    margin-bottom: 48px;
   }
 }
