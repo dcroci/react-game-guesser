@@ -12,7 +12,7 @@ export default function Navbar({
         </div>
         <ul>
           <li onClick={handleToggleModal}>Instructions</li>
-          <li>Contact</li>
+          {/* <li>Contact</li> */}
           <li className="total-wins">{totalWins} 🏆</li>
         </ul>
       </nav>
@@ -33,6 +33,7 @@ export default function Navbar({
                 * All games are ranked 75+ by Metacritic and come from all
                 gaming platforms
               </li>
+              <li>🌟 : Hint can easily give away the correct answer</li>
             </ul>
             <p onClick={handleToggleModal}>Let{`'`}s Play!</p>
           </div>

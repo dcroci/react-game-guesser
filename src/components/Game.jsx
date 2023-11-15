@@ -162,7 +162,7 @@ export default function Game({ totalWins, setTotalWins, setShowConfetti }) {
               />
             </div>
           </div>
-          <div>
+          <div className="all-hints">
             <Hint
               correctAnswer={correctAnswer}
               handleHintClick={handleHintClick}

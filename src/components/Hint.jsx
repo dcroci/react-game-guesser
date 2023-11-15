@@ -60,9 +60,11 @@ export default function Hint(props) {
       ) : (
         <p
           className="hint desc-div"
+          style={{ position: 'relative' }}
           onClick={() => props.handleHintClick('hint6')}
         >
-          Description ⭐
+          Description{' '}
+          <p style={{ position: 'absolute', top: '0', right: '0' }}>🌟</p>
         </p>
       )}
     </div>
