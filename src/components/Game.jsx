@@ -171,7 +171,7 @@ export default function Game({ totalWins, setTotalWins, setShowConfetti }) {
               details={correctAnswerDetails}
             />
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="form">
               <input
                 type="text"
                 placeholder="Guess a game..."

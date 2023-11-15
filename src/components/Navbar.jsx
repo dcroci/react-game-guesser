@@ -7,14 +7,19 @@ export default function Navbar({
   return (
     <>
       <nav>
-        <div className="logo">
-          <h1>Game Guesser</h1>
+        <div className="nav">
+          <div className="logo">
+            <h1>
+              {/* <span>🎮</span>  */}
+              Game Guesser
+            </h1>
+          </div>
+          <ul>
+            <li onClick={handleToggleModal}>Instructions</li>
+            {/* <li>Contact</li> */}
+            <li className="total-wins">{totalWins} 🏆</li>
+          </ul>
         </div>
-        <ul>
-          <li onClick={handleToggleModal}>Instructions</li>
-          {/* <li>Contact</li> */}
-          <li className="total-wins">{totalWins} 🏆</li>
-        </ul>
       </nav>
       <>
         {modalIsActive ? (
